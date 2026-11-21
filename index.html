@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dawood Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE  work: executive, calm, exact, a finance professional's portfolio
+   IDEA   a reconciled workbook: every claim ties out, every screen is a real working sheet with values masked
+   PICTURE a fanned stack of three of Dawood's working screens in the hero; full interactive Excel / Sheets mock-ups below
+   COLOUR plum-black ground, white ink, rose accent, dusk support; screens keep real Excel green and conditional-format colours
+   TYPE   Inter Tight 300 very large for display + Inter for text and grids
+   LAYOUT laptop: name and summary left, screen stack right, figures in one ruled row; phone: title, front screen, figures */
+
+/* ---------- Theme: one palette (plum night desk) in both light and dark ---------- */
+:root{color-scheme:dark;--bg:#1a0f1f;--s1:#24162a;--s2:#2e1d35;--line:#45324d;--ink:#ffffff;--mut:#d6cadb;--rose:#ff8fa3;--dusk:#8f7aa8;--xl:#217346;--gs:#188038}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip}
+a{color:inherit}
+img{max-width:100%}
+h1,h2,h3{font-family:"Inter Tight",Inter,system-ui,sans-serif;letter-spacing:-.02em;line-height:1.05;margin:0;text-wrap:balance}
+h2{font-weight:300;font-size:clamp(32px,4.4vw,52px)}
+h3{font-weight:600;font-size:20px;line-height:1.25}
+p{margin:0 0 14px;max-width:68ch}
+.band{padding-block:clamp(40px,6vw,88px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.mut{color:var(--mut)}
+.lead{font-size:17px;color:var(--mut)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font:600 15px Inter,sans-serif;text-decoration:none;cursor:pointer}
+.btn:hover{border-color:var(--rose)}
+.btn.pri{background:var(--rose);border-color:var(--rose);color:#1a0f1f}
+.btn.pri:hover{background:#ffa9b9}
+:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+
+/* ---------- Top bar ---------- */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding:10px max(5vw,16px)}
+.brand{font:600 17px "Inter Tight",sans-serif;text-decoration:none;white-space:nowrap}
+.brand b{color:var(--rose)}
+.nav{display:flex;gap:4px;overflow-x:auto;flex:1;scrollbar-width:none}
+.nav a{flex:none;padding:10px 12px;border-radius:8px;color:var(--mut);text-decoration:none;font-size:15px}
+.nav a:hover{color:var(--ink);background:var(--s1)}
+@media(max-width:720px){.top .btn{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:center}
+.hero h1{font-weight:300;font-size:clamp(44px,7vw,84px)}
+.who{display:flex;align-items:center;gap:clamp(16px,2.5vw,28px)}
+.me{width:clamp(92px,11vw,132px);height:clamp(92px,11vw,132px);border-radius:50%;object-fit:cover;object-position:50% 30%;border:4px solid var(--rose);flex:none;background:var(--s2)}
+.role{font:500 clamp(19px,2vw,23px)/1.35 "Inter Tight",sans-serif;margin:18px 0 16px;color:var(--rose)}
+.where{font-size:15px;color:var(--mut);margin-top:6px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stackfig{position:relative;height:430px}
+.card{position:absolute;width:min(560px,92%);border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.45);overflow:hidden;transition:transform .4s}
+.card.c3{right:0;top:0;transform:rotate(3deg)}
+.card.c2{right:6%;top:46px;transform:rotate(-2deg)}
+.card.c1{right:12%;top:110px}
+.stackfig:hover .c3{transform:rotate(5deg) translate(14px,-8px)}
+.stackfig:hover .c2{transform:rotate(-3.5deg) translate(-6px,-4px)}
+.figs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(32px,5vw,56px)}
+.figs div{padding:18px 16px;border-left:1px solid var(--line)}
+.figs div:first-child{border-left:0}
+.figs b{display:block;font:300 clamp(30px,3.4vw,44px)/1 "Inter Tight",sans-serif;white-space:nowrap}
+.figs span{display:block;margin-top:8px;font-size:14px;color:var(--mut);line-height:1.35}
+@media(max-width:980px){.hero{grid-template-columns:minmax(0,1fr)}.stackfig{height:400px}.figs{grid-template-columns:repeat(3,minmax(0,1fr))}.figs div:nth-child(4){border-left:0}.figs div:nth-child(n+4){border-top:1px solid var(--line)}}
+@media(max-width:600px){.stackfig{height:auto}.card{position:relative;width:100%;right:auto;top:auto;transform:none!important}.card.c2,.card.c3{display:none}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.figs div{border-left:0!important;border-top:1px solid var(--line)}.figs div:nth-child(-n+2){border-top:0}.figs div:nth-child(even){border-left:1px solid var(--line)!important}}
+
+/* ---------- About + timeline ---------- */
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,64px);align-items:start}
+.about h2{margin-bottom:18px}
+.tl{margin-top:8px}
+.tlgrid{display:grid;grid-template-columns:minmax(84px,2.6fr) minmax(0,8.5fr) minmax(8px,1fr) minmax(96px,3fr);gap:4px;align-items:end}
+.tlc b{display:block;font:600 14px/1.25 "Inter Tight",sans-serif;margin-bottom:8px}
+.tlc .seg2{display:flex;gap:3px;height:46px}
+.tlc .seg2 i{border-radius:6px}
+.tlc .yr{display:block;margin-top:8px;font-size:13px;color:var(--mut);white-space:nowrap}
+.tlc.gap .seg2{border-bottom:2px dashed var(--line);height:24px;margin-bottom:30px}
+.tlbar{position:relative;height:46px;border-radius:8px;background:var(--s1)}
+.tlbar i{position:absolute;top:0;bottom:0;border-radius:6px;border:2px solid var(--bg)}
+.tlax{position:relative;height:22px;font-size:13px;color:var(--mut)}
+.tlax span{position:absolute;transform:translateX(-50%)}
+.orgs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.org{background:var(--s1);border-radius:12px;padding:16px;border-top:4px solid}
+.org h3{font-size:17px;margin-bottom:8px}
+.org ul{list-style:none;margin:0;padding:0;font-size:14px}
+.org li{padding:6px 0;border-top:1px solid var(--line)}
+.org li span{display:block;color:var(--mut);font-size:13px}
+@media(max-width:980px){.about{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.orgs{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- Capabilities ---------- */
+.capgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.cap{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:22px}
+.cap .tag{display:inline-block;font-size:13px;font-weight:600;color:#1a0f1f;background:var(--rose);border-radius:999px;padding:3px 10px;margin-bottom:12px}
+.cap.alt .tag{background:var(--dusk);color:#fff}
+.cap ul{margin:12px 0 0;padding-left:18px;color:var(--mut);font-size:15px}
+.cap li{margin:6px 0}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tools span{padding:8px 14px;border-radius:999px;background:var(--s2);border:1px solid var(--line);font-size:14px}
+@media(max-width:900px){.capgrid{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- Snapshots ---------- */
+.snaphead{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:end;justify-content:space-between}
+.maskbar{position:sticky;top:62px;z-index:10;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:22px 0 8px;padding:10px 14px;background:var(--s2);border:1px solid var(--line);border-radius:12px}
+.seg{display:inline-flex;background:var(--bg);border-radius:999px;padding:3px;border:1px solid var(--line)}
+.seg button{min-height:38px;padding:6px 14px;border:0;border-radius:999px;background:transparent;color:var(--mut);font:600 14px Inter,sans-serif;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--rose);color:#1a0f1f}
+.maskbar small{font-size:13px;color:var(--mut)}
+.snap{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,8fr);gap:clamp(18px,3vw,40px);padding-block:34px;border-bottom:1px solid var(--line)}
+.snap:last-child{border-bottom:0}
+.cap2 h3{margin-bottom:10px}
+.cap2 p{font-size:15px;color:var(--mut)}
+.cap2 .k{font-size:13px;font-weight:600;color:var(--rose);margin:14px 0 4px}
+.cap2 ul{margin:0;padding-left:18px;font-size:14px;color:var(--mut)}
+.cap2 li{margin:4px 0}
+@media(max-width:980px){.snap{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- App windows (Excel / Google Sheets / dashboard) ---------- */
+.win{background:#fff;color:#1f1f1f;border-radius:12px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.4);font:13px/1.35 Inter,"Segoe UI",sans-serif}
+.tb{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--xl);color:#fff;font-size:13px}
+.tb .dots{display:flex;gap:5px}.tb .dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.55)}
+.tb .fn{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tb .badge{background:rgba(255,255,255,.2);border-radius:4px;padding:2px 7px;font-size:12px;white-space:nowrap}
+.win.gs .tb{background:#f9fbfd;color:#1f1f1f;border-bottom:1px solid #e3e3e3}
+.win.gs .tb .dots i{background:#c4c7c5}
+.win.gs .tb .badge{background:#e6f4ea;color:#137333}
+.win.dash .tb{background:#2e1d35}
+.menu{display:flex;gap:14px;padding:6px 12px;background:#f3f3f3;border-bottom:1px solid #d9d9d9;color:#444;font-size:12px;overflow-x:auto;white-space:nowrap}
+.win.gs .menu{background:#fff}
+.fbar{display:flex;border-bottom:1px solid #d9d9d9;font:12px/1 Consolas,"Cascadia Mono",Menlo,monospace}
+.fbar .nb{width:64px;flex:none;padding:7px 8px;border-right:1px solid #d9d9d9;color:#333}
+.fbar .fx{padding:7px 8px;color:#777;border-right:1px solid #d9d9d9;font-style:italic}
+.fbar .fv{flex:1;padding:7px 8px;white-space:nowrap;overflow-x:auto;color:#1f1f1f}
+.grid{overflow-x:auto;max-height:440px;overflow-y:auto}
+table.xl{border-collapse:collapse;font-size:12.5px;white-space:nowrap;font-variant-numeric:tabular-nums;width:100%}
+.xl td,.xl th{border:1px solid #e1e1e1;padding:4px 8px;height:24px}
+.xl thead th{position:sticky;top:0;background:#efefef;color:#555;font-weight:500;text-align:center;z-index:1}
+.xl .rn{background:#efefef;color:#666;text-align:center;width:34px;position:sticky;left:0}
+.xl td.num{text-align:right}
+.xl tr.hd td{background:#d9e7dd;font-weight:600;color:#123}
+.win.gs .xl tr.hd td{background:#e8f0fe}
+.xl tr.tt td{font-weight:700;font-size:13.5px;border-color:transparent;background:#fff}
+.xl tr.tot td{font-weight:700;background:#f2f2f2;border-top:2px solid #777}
+.xl td.sel{outline:2px solid var(--xl);outline-offset:-2px;background:#eaf5ee}
+.win.gs .xl td.sel{outline-color:#1a73e8;background:#e8f0fe}
+.xl td{cursor:cell}
+.ok{background:#c6efce!important;color:#006100}
+.wa{background:#ffeb9c!important;color:#9c5700}
+.cr{background:#ffc7ce!important;color:#9c0006}
+.neg{color:#c00000}
+.tabs{display:flex;gap:2px;padding:0 8px;background:#f3f3f3;border-top:1px solid #d9d9d9;overflow-x:auto}
+.tabs button{flex:none;min-height:36px;padding:6px 14px;border:0;border-bottom:3px solid transparent;background:transparent;font:500 12.5px Inter,sans-serif;color:#444;cursor:pointer}
+.tabs button[aria-selected=true]{background:#fff;color:var(--xl);border-bottom-color:var(--xl);font-weight:700}
+.status{padding:5px 12px;background:#f3f3f3;border-top:1px solid #d9d9d9;color:#555;font-size:12px;display:flex;gap:16px;flex-wrap:wrap}
+
+/* masking modes: placeholder values / blur / redaction */
+.n{display:inline-block;transition:filter .25s}
+[data-mask=blur] .n{filter:blur(5px)}
+[data-mask=redact] .n{color:transparent!important;background:#2b2b2b;border-radius:3px}
+.lock{filter:blur(6px)!important;user-select:none}
+.red{display:inline-block;height:11px;border-radius:2px;background:#2b2b2b;vertical-align:middle}
+
+/* pipeline + dashboard */
+.pipe{padding:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;background:#fbf9fc}
+.st{position:relative;background:#fff;border:1px solid #e2dbe6;border-radius:10px;padding:12px}
+.st b{display:block;font-size:13.5px;color:#1a0f1f}
+.st .sys{display:inline-block;font-size:11.5px;margin:6px 0;padding:2px 7px;border-radius:4px;background:#efe9f3;color:#5b4470}
+.st ul{margin:4px 0 0;padding-left:16px;color:#555;font-size:12px}
+.st .cnt{position:absolute;top:10px;right:10px;font-size:12px;color:#666}
+.st.on{border-color:#ff8fa3;box-shadow:0 0 0 2px #ffd3db}
+.lane{padding:12px 18px 18px;background:#fbf9fc;border-top:1px dashed #d8cfe0;font-size:12.5px;color:#444}
+.dgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:14px;padding:14px;background:#fbf9fc}
+.panel{background:#fff;border:1px solid #e2dbe6;border-radius:10px;padding:12px}
+.panel h4{margin:0 0 10px;font-size:13px}
+.tiles{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px}
+.tiles i{aspect-ratio:1;border-radius:4px;display:grid;place-items:center;font-style:normal;font-size:10.5px;color:#1a0f1f}
+.leg{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;font-size:11.5px;color:#555}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.mini{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:12.5px}
+.mini td,.mini th{padding:6px 6px;border-bottom:1px solid #eee;text-align:right;white-space:nowrap}
+.mini th{color:#666;font-weight:500}
+.mini td:first-child,.mini th:first-child{text-align:left}
+.ai{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:18px;background:#fbf9fc}
+.ai .st b{font-size:13px}
+.ai .who{font-size:11.5px;font-weight:600;margin-top:6px}
+@media(max-width:760px){.pipe{grid-template-columns:repeat(2,minmax(0,1fr))}.dgrid{grid-template-columns:minmax(0,1fr)}.ai{grid-template-columns:minmax(0,1fr)}}
+
+/* hero mini cards */
+.mc{padding:12px 14px;background:#fff;color:#1f1f1f}
+.mc .row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid #eee;font-variant-numeric:tabular-nums;font-size:13px}
+.mc .row:last-child{border-bottom:0}
+.mc .ok,.mc .cr{padding:1px 6px;border-radius:3px}
+.sweep{position:relative}
+.sweep::after{content:"";position:absolute;left:0;right:0;height:26px;top:28px;background:linear-gradient(90deg,transparent,rgba(33,115,70,.16),transparent);animation:sw 4.5s ease-in-out infinite}
+@keyframes sw{0%{transform:translateY(0)}50%{transform:translateY(104px)}100%{transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.sweep::after{animation:none;display:none}html{scroll-behavior:auto}.card{transition:none}}
+
+/* ---------- Experience ---------- */
+.exp{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(24px,4vw,56px);margin-top:28px}
+.job{padding:20px 0;border-top:1px solid var(--line)}
+.job:first-child{border-top:0;padding-top:0}
+.job .meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;margin-bottom:8px}
+.job .meta span{color:var(--mut);font-size:14px;white-space:nowrap}
+.job ul{margin:8px 0 0;padding-left:18px;color:var(--mut)}
+.job li{margin:6px 0}
+.job li b{color:var(--ink);font-weight:600}
+.side{background:var(--s1);border-radius:14px;padding:20px;align-self:start;position:sticky;top:90px}
+.side h3{margin-bottom:10px}
+.side ul{list-style:none;padding:0;margin:0 0 18px}
+.side li{padding:8px 0;border-top:1px solid var(--line);font-size:15px}
+.side li span{display:block;color:var(--mut);font-size:13px}
+@media(max-width:900px){.exp{grid-template-columns:minmax(0,1fr)}.side{position:static}}
+
+/* ---------- Contact ---------- */
+.contact{background:var(--rose);color:#1a0f1f}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(24px,4vw,64px);align-items:center}
+.contact h2{font-size:clamp(48px,8vw,96px);font-weight:300}
+.contact p{color:#3b1d2a;font-size:17px;margin-top:16px}
+.cl{list-style:none;margin:0;padding:0}
+.cl li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:14px 0;border-top:1px solid rgba(26,15,31,.25)}
+.cl li:first-child{border-top:0}
+.cl small{display:block;font-size:13px;color:#5a2b3d}
+.cl a,.cl .v{font-weight:600;font-size:17px;overflow-wrap:anywhere}
+.contact .btn{border-color:#1a0f1f;color:#1a0f1f}
+.contact .btn.pri{background:#1a0f1f;color:#fff}
+.note{font-size:13px;color:#5a2b3d;min-height:20px}
+@media(max-width:900px){.contact .wrap{grid-template-columns:minmax(0,1fr)}}
+footer{padding:22px max(5vw,16px);color:var(--mut);font-size:13px;text-align:center}
+</style>
+</head>
+<body data-mask="values">
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#top">Dawood <b>Azhar</b> Qureshi</a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#about">About</a><a href="#capabilities">Capabilities</a><a href="#snapshots">Work snapshots</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="btn pri cvbtn" href="#contact">Download CV</a>
+</div></header>
+
+<main id="top">
+<!-- ================= HERO ================= -->
+<section class="band"><div class="wrap">
+  <div class="hero">
+    <div>
+      <div class="who"><img class="me" src="data:image/jpeg;base64,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" alt="Dawood Azhar Qureshi" width="132" height="170"><h1>Dawood Azhar Qureshi</h1></div>
+      <p class="role">Accounts Receivable and Credit Control, with the reconciliations and finance systems that keep cash honest.</p>
+      <p class="lead">12 years in finance across consumer finance and FMCG. I turn high-volume receivables into predictable cash: daily collection tracking, clean statement reconciliations and ERP-ready processes.</p>
+      <p class="where">Based in Dubai. UAE resident with a UAE driving licence.</p>
+      <div class="cta">
+        <a class="btn pri" href="#snapshots">See my work snapshots</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <a class="stackfig" href="#snapshots" aria-label="Preview of three work screens, open the snapshots section">
+      <div class="card c3 win dash"><div class="tb"><span class="dots"><i></i><i></i><i></i></span><span class="fn">Order-to-cash pipeline</span></div><div class="mc" id="h3"></div></div>
+      <div class="card c2 win gs"><div class="tb"><span class="dots"><i></i><i></i><i></i></span><span class="fn">SOA reconciliation, key account</span><span class="badge">Sample figures</span></div><div class="mc" id="h2"></div></div>
+      <div class="card c1 win"><div class="tb"><span class="dots"><i></i><i></i><i></i></span><span class="fn">Due_OD_Achievement_Closing.xlsb</span><span class="badge">Sample figures</span></div><div class="mc sweep" id="h1"></div></div>
+    </a>
+  </div>
+  <div class="figs">
+    <div><b>12 yrs</b><span>in credit, recovery, AR and project accounting</span></div>
+    <div><b>15,000+</b><span>invoices a month kept reconciled</span></div>
+    <div><b>160+</b><span>branches covered by daily Due/OD tracking</span></div>
+    <div><b>&minus;35%</b><span>accounts delinquent 120+ days</span></div>
+    <div><b>+40%</b><span>productivity after automating the sales tool</span></div>
+    <div><b>40+</b><span>outlets in one project P&amp;L I run</span></div>
+  </div>
+</div></section>
+
+<!-- ================= ABOUT ================= -->
+<section class="band" id="about" style="background:var(--s1)"><div class="wrap about">
+  <div>
+    <h2>Credit discipline first, then the systems behind it</h2>
+    <p class="lead">I started on the recovery desk of a hire purchase company, where every overdue installment had a name, a branch and a deadline. That taught me collections as a daily operating rhythm, not a month-end surprise.</p>
+    <p class="mut">At RD Pvt. Ltd. I moved from recovery into credit policy and then Accounts Receivable, running daily Due/OD achievement reporting for 160+ branches in Excel and automating the sales tool the branches relied on.</p>
+    <p class="mut">At Wonder Bakery in Dubai I took over AR for 15,000+ invoices a month, reconciled customer statements, supported the move to Microsoft Dynamics and later stepped up to Project Accountant, running the full books of a 40+ outlet retail project and its UAE e-invoicing rollout.</p>
+    <p class="mut">I sit between finance, operations and IT: I understand the ledger and the system that feeds it.</p>
+  </div>
+  <div class="tl" aria-label="Career timeline 2011 to 2026">
+    <div class="tlgrid" id="tlgrid"></div>
+    <div class="orgs" id="orgs"></div>
+  </div>
+</div></section>
+
+<!-- ================= CAPABILITIES ================= -->
+<section class="band" id="capabilities"><div class="wrap">
+  <h2>What I bring to a finance team</h2>
+  <div class="capgrid">
+    <article class="cap"><span class="tag">Core expertise</span><h3>Accounts Receivable and Credit Control</h3>
+      <ul><li>Order-to-cash ownership from invoice to allocation</li><li>Daily Due and Overdue (OD) targets by branch, zone and channel</li><li>Aging analysis (0&ndash;30 to 120+ days) and recovery plans</li><li>Credit policy design and credit risk on installment contracts</li><li>Bad debt provisioning and AR forecasting for cash planning</li><li>Rebates, LPO discrepancies and balance confirmations</li></ul></article>
+    <article class="cap"><span class="tag">Core expertise</span><h3>Reconciliation and Close</h3>
+      <ul><li>Statement of account (SOA) reconciliation for key accounts and distributors</li><li>POS sales to ERP reconciliation across outlets</li><li>Manpower billing checks: timesheets vs invoices vs approvals</li><li>AP and AR end to end, month-end close support</li><li>Project P&amp;L build and management reporting</li></ul></article>
+    <article class="cap alt"><span class="tag">Strong</span><h3>Finance Systems and Automation</h3>
+      <ul><li>ERP migration support to Microsoft Dynamics (finance side, alongside IT)</li><li>UAE e-invoicing implementation with a third-party platform</li><li>POS software rollout and reconciliation design</li><li>Excel automation: advanced formulas, lookups, pivots, linked multi-sheet trackers</li><li>AI assistants for matching, formula building and variance commentary, always reviewed</li><li>Scripts that organise files and produce action logs</li></ul></article>
+  </div>
+  <div class="tools" aria-label="Tools">
+    <span>Microsoft Dynamics 365</span><span>Advanced Excel</span><span>Google Sheets</span><span>Tally Prime</span><span>Power BI (working knowledge)</span><span>POS systems</span><span>UAE e-invoicing</span><span>AI assistants (Claude, ChatGPT)</span><span>Python and PowerShell scripts</span>
+  </div>
+</div></section>
+
+<!-- ================= SNAPSHOTS ================= -->
+<section class="band" id="snapshots" style="background:var(--s1)"><div class="wrap">
+  <div class="snaphead">
+    <h2>Work and workflow snapshots</h2>
+    <p class="mut" style="margin:0">Rebuilt versions of the screens I work in every day. Structure and logic are real; every number is a sample figure.</p>
+  </div>
+  <p class="mut" style="font-size:14px;margin:18px 0 0">All figures on these screens, including sales and collection amounts, are sample figures. Customer names are redacted and P&amp;L margins stay blurred.</p>
+
+  <!-- 1. RD workbook -->
+  <article class="snap">
+    <div class="cap2">
+      <h3>RD: daily Due/OD achievement workbook</h3>
+      <p id="rdcap">The closing pack management read every morning: month-to-date collection against target for exclusive due, due and overdue, split by channel, with the OD/AR ratio as the health check.</p>
+      <div class="k">What it shows about how I work</div>
+      <ul><li>One workbook, five linked sheets: summary, branch drill-down, account aging and two exception lists</li><li>Every total is a formula you can click and trace</li><li>Conditional formatting flags branches before month-end, not after</li></ul>
+      <div class="k">Masking applied</div>
+      <ul><li>Branch, zone and manager names replaced with codes</li><li>Customer names redacted, codes and amounts generated</li></ul>
+    </div>
+    <div class="win" id="rdwin">
+      <div class="tb"><span class="dots"><i></i><i></i><i></i></span><span class="fn">Due_OD_Achievement_Closing.xlsb</span><span class="badge">Sample figures</span></div>
+      <div class="menu"><span>File</span><span>Home</span><span>Insert</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span></div>
+      <div class="fbar"><span class="nb" id="rdnb">A1</span><span class="fx">fx</span><span class="fv" id="rdfv">Click any cell to see its formula</span></div>
+      <div class="grid" id="rdgrid"></div>
+      <div class="tabs" role="tablist" id="rdtabs"></div>
+      <div class="status" id="rdstat"></div>
+    </div>
+  </article>
+
+  <!-- 2. SOA recon -->
+  <article class="snap">
+    <div class="cap2">
+      <h3>Statement of account reconciliation</h3>
+      <p>How I close the gap between a customer's statement and our ledger: every difference becomes a named reconciling item with an owner and a status, until the difference reads zero.</p>
+      <div class="k">What it shows about how I work</div>
+      <ul><li>A proof line that must tie: ledger plus items equals statement</li><li>Owners outside finance (sales, logistics) are named, so items get closed</li><li>Same pattern used for distributor balance confirmations</li></ul>
+      <div class="k">Masking applied</div>
+      <ul><li>Customer anonymised, reference numbers masked, amounts generated</li></ul>
+    </div>
+    <div class="win gs">
+      <div class="tb"><span class="dots"><i></i><i></i><i></i></span><span class="fn">SOA reconciliation, key account</span><span class="badge">Sample figures</span></div>
+      <div class="menu"><span>File</span><span>Edit</span><span>View</span><span>Insert</span><span>Format</span><span>Data</span><span>Tools</span></div>
+      <div class="fbar"><span class="nb" id="sonb">A1</span><span class="fx">fx</span><span class="fv" id="sofv">Click any cell to see its formula</span></div>
+      <div class="grid" id="sogrid"></div>
+    </div>
+  </article>
+
+  <!-- 3. O2C pipeline -->
+  <article class="snap">
+    <div class="cap2">
+      <h3>Order-to-cash and e-invoicing pipeline</h3>
+      <p>The process view I use to explain where cash gets stuck. Each station lists the control I run there, and which system holds the record.</p>
+      <div class="k">What it shows about how I work</div>
+      <ul><li>E-invoicing sits inside the flow, not bolted on: validation happens before the customer sees the invoice</li><li>POS sales feed the same reconciliation as wholesale invoices</li></ul>
+      <div class="k">Masking applied</div>
+      <ul><li>The e-invoicing partner is not named; volumes are sample counts</li></ul>
+    </div>
+    <div class="win dash">
+      <div class="tb"><span class="dots"><i></i><i></i><i></i></span><span class="fn">Order-to-cash: controls by stage</span><span class="badge">Sample figures</span></div>
+      <div class="pipe" id="pipe"></div>
+      <div class="lane"><b>Where it usually breaks:</b> LPO price differences at stage 2, unapplied receipts at stage 7. Both get their own exception list in the SOA tracker above.</div>
+    </div>
+  </article>
+
+  <!-- 4. Project P&L -->
+  <article class="snap">
+    <div class="cap2">
+      <h3>Project P&amp;L and manpower billing</h3>
+      <p>For a 40+ outlet retail project I map sales, cost of goods, manpower and overheads into one outlet-level P&amp;L, and check every manpower invoice against timesheets before it is paid.</p>
+      <div class="k">What it shows about how I work</div>
+      <ul><li>Outlet-level view, so management sees which sites carry the project</li><li>Three-way manpower check: timesheet hours, invoiced hours, approved hours</li></ul>
+      <div class="k">Masking applied</div>
+      <ul><li>All P&amp;L lines and margins permanently blurred</li><li>Outlets and suppliers replaced with codes</li></ul>
+    </div>
+    <div class="win dash">
+      <div class="tb"><span class="dots"><i></i><i></i><i></i></span><span class="fn">Project P&amp;L: outlet view</span><span class="badge">Sample figures, margins hidden</span></div>
+      <div class="dgrid">
+        <div class="panel"><h4>Outlet margin band, month to date</h4><div class="tiles" id="tiles"></div>
+          <div class="leg"><span><i style="background:#9fd8b4"></i>Above plan</span><span><i style="background:#ffe08a"></i>Near plan</span><span><i style="background:#ffb3c0"></i>Below plan</span></div></div>
+        <div class="panel"><h4>P&amp;L summary</h4><table class="mini" id="pl"></table>
+          <h4 style="margin-top:16px">Manpower billing check</h4><table class="mini" id="mp"></table></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 5. AI workflow -->
+  <article class="snap">
+    <div class="cap2">
+      <h3>AI-assisted reconciliation workflow</h3>
+      <p>How I use AI assistants and small scripts to go faster without losing control. The assistant drafts; I check every match before anything is posted.</p>
+      <div class="k">What it shows about how I work</div>
+      <ul><li>Clear handover points between tool and person</li><li>Nothing reaches the ledger without review, and every run leaves a log</li><li>Confidential data is stripped before any AI tool sees it</li></ul>
+    </div>
+    <div class="win dash">
+      <div class="tb"><span class="dots"><i></i><i></i><i></i></span><span class="fn">Reconciliation with AI assist</span><span class="badge">Sample figures</span></div>
+      <div class="ai" id="ai"></div>
+      <div class="lane"><b>Scripts lane:</b> a small script files exports into dated folders, names them consistently and writes a log of what moved where. It runs as a dry run first and never deletes.</div>
+    </div>
+  </article>
+</div></section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section class="band" id="experience"><div class="wrap">
+  <h2>Experience and results</h2>
+  <div class="exp">
+    <div id="jobs"></div>
+    <aside class="side">
+      <h3>Credentials</h3>
+      <ul><li>Bachelor of Commerce (B.Com)<span>University of the Punjab, Lahore, 2011</span></li><li>Advanced Excel<span>ICMA Pakistan</span></li><li>IELTS band 7.0<span>British Council</span></li></ul>
+      <h3>Recognition at RD</h3>
+      <ul><li>Certificate of Excellence<span>From the CEO, 2022</span></li><li>Extraordinary Performance award<span>2021</span></li></ul>
+    </aside>
+  </div>
+</div></section>
+
+<!-- ================= CONTACT ================= -->
+<section class="band contact" id="contact"><div class="wrap">
+  <div>
+    <h2>Be ambitious.</h2>
+    <p>It is how I approach a receivables book: aim for zero unexplained differences, cash in on time and processes the next person can run. If your finance team wants that, let's talk.</p>
+    <div class="cta"><a class="btn pri cvbtn" href="#contact">Download CV</a><a class="btn" href="https://www.linkedin.com/in/daq1" target="_blank" rel="noopener">LinkedIn profile</a></div>
+    <p class="note" id="cvnote"></p>
+  </div>
+  <ul class="cl">
+    <li><div><small>Email</small><a href="mailto:daud.azhar.q@gmail.com">daud.azhar.q@gmail.com</a></div><button class="btn" type="button" id="copy">Copy</button></li>
+    <li><div><small>Phone / WhatsApp</small><a href="tel:+971547220401">+971 54 722 0401</a></div></li>
+    <li><div><small>LinkedIn</small><a href="https://www.linkedin.com/in/daq1" target="_blank" rel="noopener">linkedin.com/in/daq1</a></div></li>
+    <li><div><small>Location</small><span class="v">Dubai, United Arab Emirates</span></div></li>
+    <li><div><small>Status</small><span class="v">UAE resident, UAE driving licence</span></div></li>
+  </ul>
+</div></section>
+</main>
+<footer>&copy; 2026 Dawood Azhar Qureshi. Work screens are illustrative reconstructions; all figures on them are sample figures.</footer>
+
+<script>
+{
+/* ===== SETTINGS: paste your CV link here (Google Drive "anyone with the link") ===== */
+const CV_URL = "https://drive.google.com/file/d/1Zd6-38SKI5p248NSSnQUUO93sseE1SNk/view?usp=drive_link";
+
+/* ---------- helpers ---------- */
+let seed = 20160713;
+const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+const between = (a, b) => a + rnd() * (b - a);
+const int = (a, b) => Math.round(between(a, b));
+const f0 = v => Math.round(v).toLocaleString("en-US");
+const pct = v => (v * 100).toFixed(1) + "%";
+const N = (v, cls = "") => `<span class="n ${cls}">${v}</span>`;
+const L = i => String.fromCharCode(65 + i);
+const $ = id => document.getElementById(id);
+
+/* A cell: html, numeric?, formula (with {r} for row), extra class */
+const c = (h, o = {}) => ({ h, ...o });
+
+/* Render an Excel-like grid. rows = [{cls, cells:[c()]}] */
+function sheet(gridEl, nb, fv, rows) {
+  const cols = Math.max(...rows.map(r => r.cells.length));
+  let html = `<table class="xl"><thead><tr><th class="rn"></th>${Array.from({length: cols}, (_, i) => `<th>${L(i)}</th>`).join("")}</tr></thead><tbody>`;
+  rows.forEach((r, ri) => {
+    html += `<tr class="${r.cls || ""}"><td class="rn">${ri + 1}</td>` +
+      r.cells.map((x, ci) => `<td class="${x.n ? "num " : ""}${x.k || ""}" data-a="${L(ci)}${ri + 1}" data-f="${(x.f || "").replace(/\{r\}/g, ri + 1).replace(/"/g, "&quot;")}" ${x.span ? `colspan="${x.span}"` : ""}>${x.h}</td>`).join("") + "</tr>";
+  });
+  gridEl.innerHTML = html + "</tbody></table>";
+  gridEl.onclick = e => {
+    const td = e.target.closest("td[data-a]"); if (!td) return;
+    gridEl.querySelectorAll(".sel").forEach(t => t.classList.remove("sel"));
+    td.classList.add("sel");
+    nb.textContent = td.dataset.a;
+    const masked = document.body.dataset.mask !== "values";
+    fv.textContent = td.dataset.f || (td.querySelector(".n,.red,.lock") && masked ? "(value masked)" : td.textContent.trim() || " ");
+  };
+}
+
+/* ---------- RD data (all generated) ---------- */
+const zones = ["North", "Central I", "Central II", "Central III", "South"];
+const branches = Array.from({length: 12}, (_, i) => {
+  const ch = i % 4 === 3 ? "Franchise" : "Branch";
+  const recv = between(2.4e6, 9.5e6);
+  const dueAcc = int(140, 520), dueT = recv * between(.08, .14);
+  const ach = [.97, .93, .88, .71, .95, .82, .99, .68, .91, .86, .94, .79][i];
+  const odT = recv * between(.04, .11), odAch = between(.35, .8);
+  return { code: `Branch ${L(Math.floor(i / 4))}-${String(i + 1).padStart(2, "0")}`, ch, zone: zones[i % 5], mgr: `ZM-${(i % 5) + 1}`,
+    recv, dueAcc, dueT, dueAccA: Math.round(dueAcc * ach), dueA: dueT * ach, ach, odT, odA: odT * odAch, odAch,
+    status: ach >= .9 ? "On track" : ach >= .75 ? "Watch" : "Critical" };
+});
+const stCls = s => s === "On track" ? "ok" : s === "Watch" ? "wa" : "cr";
+
+const items = ["Refrigerator", "LED television", "Air conditioner", "Mobile phone", "Cooking range", "Deep freezer", "Washing machine", "Motorcycle"];
+const accounts = Array.from({length: 16}, (_, i) => {
+  const b = branches[i % 12], plan = [12, 18, 24, 36][i % 4], hp = between(45e3, 260e3), inst = hp / plan;
+  const m = int(3, plan - 2), u = [0, 1, 0, 3, 5, 2, 0, 6, 1, 4, 0, 2, 7, 1, 0, 3][i];
+  const buckets = [0, 0, 0, 0, 0];
+  for (let k = 0; k < u; k++) buckets[Math.min(k, 4)] += inst;
+  return { code: `${b.code.slice(-4)}HP-00${String(int(100, 999))}`, b, item: items[i % 8], plan, inst, hp,
+    billed: inst * m, recd: inst * (m - u), due: inst, buckets, od: inst * u };
+});
+
+const rdHead = [
+  { cls: "hd", cells: ["Sr #", "Branch", "Channel", "Zone", "Zone mgr", "Receivable", "Due tgt acc.", "Due tgt amt.", "Due ach. acc.", "Due ach. amt.", "Due ach. %", "OD tgt amt.", "OD ach. amt.", "OD ach. %", "OD/AR ratio", "Status"].map(h => c(h)) }
+];
+function branchRows(list) {
+  const rows = list.map((b, i) => ({ cells: [
+    c(i + 1, { n: 1 }), c(b.code), c(b.ch), c(b.zone), c(b.mgr), c(N(f0(b.recv)), { n: 1 }),
+    c(N(f0(b.dueAcc)), { n: 1 }), c(N(f0(b.dueT)), { n: 1 }), c(N(f0(b.dueAccA)), { n: 1 }), c(N(f0(b.dueA)), { n: 1 }),
+    c(N(pct(b.ach)), { n: 1, f: "=IFERROR(J{r}/H{r},0)" }), c(N(f0(b.odT)), { n: 1 }), c(N(f0(b.odA)), { n: 1 }),
+    c(N(pct(b.odAch)), { n: 1, f: "=IFERROR(M{r}/L{r},0)" }), c(N(pct(b.odT / b.recv)), { n: 1, f: "=IFERROR(L{r}/F{r},0)" }),
+    c(b.status, { k: stCls(b.status), f: '=IF(K{r}>=90%,"On track",IF(K{r}>=75%,"Watch","Critical"))' }) ] }));
+  const s = k => list.reduce((a, b) => a + b[k], 0), n = list.length + 1;
+  rows.push({ cls: "tot", cells: [c(""), c("Total"), c(""), c(""), c(""),
+    ...["recv", "dueAcc", "dueT", "dueAccA", "dueA"].map((k, j) => c(N(f0(s(k))), { n: 1, f: `=SUM(${L(5 + j)}2:${L(5 + j)}${n})` })),
+    c(N(pct(s("dueA") / s("dueT"))), { n: 1, f: `=IFERROR(J${n + 1}/H${n + 1},0)` }),
+    c(N(f0(s("odT"))), { n: 1, f: `=SUM(L2:L${n})` }), c(N(f0(s("odA"))), { n: 1, f: `=SUM(M2:M${n})` }),
+    c(N(pct(s("odA") / s("odT"))), { n: 1, f: `=IFERROR(M${n + 1}/L${n + 1},0)` }), c(N(pct(s("odT") / s("recv"))), { n: 1 }), c("") ] });
+  return rdHead.concat(rows);
+}
+function accountRows(list) {
+  const head = { cls: "hd", cells: ["Cust code", "Customer", "Branch", "Item", "Plan (m)", "Inst. amt.", "HP value", "Billed", "Received", "Receivable", "Due", "0-30", "31-60", "61-90", "91-120", "120+", "OD", "Branch status"].map(h => c(h)) };
+  return [head].concat(list.map(a => ({ cells: [
+    c(N(a.code)), c(`<span class="red" style="width:${int(90, 150)}px"></span>`), c(a.b.code), c(a.item), c(a.plan, { n: 1 }),
+    c(N(f0(a.inst)), { n: 1, f: "=ROUND(G{r}/E{r},0)" }), c(N(f0(a.hp)), { n: 1 }), c(N(f0(a.billed)), { n: 1 }), c(N(f0(a.recd)), { n: 1 }),
+    c(N(f0(a.hp - a.recd)), { n: 1, f: "=G{r}-I{r}" }), c(N(f0(a.due)), { n: 1, f: "=F{r}" }),
+    ...a.buckets.map((v, j) => c(v ? N(f0(v)) : "-", { n: 1, k: v ? (j >= 3 ? "cr" : j >= 1 ? "wa" : "") : "" })),
+    c(a.od ? N(f0(a.od)) : "-", { n: 1, f: "=SUM(L{r}:P{r})" }),
+    c(a.b.status, { k: stCls(a.b.status), f: "=VLOOKUP(C{r},'Branch Wise Detail'!B:P,15,0)" }) ] })));
+}
+function summaryRows() {
+  const sum = (list, k) => list.reduce((a, b) => a + b[k], 0);
+  const exT = sum(branches, "dueT") * .42, exA = exT * .9, exAcc = Math.round(sum(branches, "dueAcc") * .55);
+  const dT = sum(branches, "dueT"), dA = sum(branches, "dueA"), dAcc = sum(branches, "dueAcc"), dAccA = sum(branches, "dueAccA");
+  const oT = sum(branches, "odT"), oA = sum(branches, "odA"), oAcc = Math.round(dAcc * .38);
+  const ch = name => { const l = branches.filter(b => b.ch === name); return [sum(l, "dueA") / sum(l, "dueT") * .99, sum(l, "dueA") / sum(l, "dueT"), sum(l, "odA") / sum(l, "odT"), sum(l, "odT") / sum(l, "recv"), sum(l, "dueA") * .041]; };
+  const B = ch("Branch"), F = ch("Franchise"), tot = [exA / exT, dA / dT, oA / oT, oT / sum(branches, "recv"), dA * .041];
+  const row = (lab, v) => ({ cells: [c(lab), ...v] });
+  return [
+    { cls: "tt", cells: [c("Due/OD achievement summary, month to date (closing)", { span: 7 })] },
+    { cls: "hd", cells: ["Description", "Exc. due acc.", "Exc. due amt.", "Due acc.", "Due amt.", "OD acc.", "OD amt."].map(h => c(h)) },
+    row("Target", [exAcc, exT, dAcc, dT, oAcc, oT].map(v => c(N(f0(v)), { n: 1 }))),
+    row("Achieved", [exAcc * .9, exA, dAccA, dA, oAcc * .6, oA].map(v => c(N(f0(v)), { n: 1 }))),
+    row("Pending", [exAcc * .1, exT - exA, dAcc - dAccA, dT - dA, oAcc * .4, oT - oA].map((v, j) => c(N(f0(v)), { n: 1, f: `=${L(j + 1)}3-${L(j + 1)}4` }))),
+    row("Ach. %", [exA / exT, dA / dT, oA / oT].flatMap((v, j) => [c(""), c(N(pct(v)), { n: 1, k: v >= .9 ? "ok" : v >= .75 ? "wa" : "cr", f: `=IFERROR(${L(2 * j + 2)}4/${L(2 * j + 2)}3,0)` })])),
+    { cells: [c("")] },
+    { cls: "hd", cells: ["Channel", "Exc. due %", "Due %", "OD %", "OD/AR ratio", "Yesterday ach.", ""].map(h => c(h)) },
+    ...[["Branch", B], ["Franchise", F], ["Total", tot]].map(([lab, v]) => ({ cls: lab === "Total" ? "tot" : "", cells: [c(lab),
+      ...v.slice(0, 4).map((x, j) => c(N(pct(x)), { n: 1, k: j < 3 ? (x >= .9 ? "ok" : x >= .75 ? "wa" : "cr") : "" })),
+      c(N(f0(v[4])), { n: 1, f: lab === "Total" ? "=SUM(F9:F10)" : "" }), c("")] }))
+  ];
+}
+
+const rdSheets = [
+  { name: "Summary", rows: summaryRows, cap: "The closing pack management read every morning: month-to-date collection against target for exclusive due, due and overdue, split by channel, with the OD/AR ratio as the health check." },
+  { name: "Branch Wise Detail", rows: () => branchRows(branches), cap: "Branch drill-down by channel and zone. Achievement % drives the status column, so a branch slipping below 75% turns red the same day." },
+  { name: "Account wise Detail", rows: () => accountRows(accounts), cap: "Account-level installment ledger with aging buckets from 0-30 to 120+ days. This is where recovery plans start: oldest buckets first, by branch." },
+  { name: "Exclusive Due Acc.", rows: () => accountRows(accounts.filter(a => !a.od)), cap: "Accounts with only the current installment due and nothing overdue. Collect these first and they never enter the aging." },
+  { name: "Critical Branches Acc.", rows: () => accountRows(accounts.filter(a => a.b.status === "Critical")), cap: "Every account in branches flagged Critical, ready to hand to the regional recovery team." }
+];
+let rdCur = 0;
+function showRd(i) {
+  rdCur = i;
+  const s = rdSheets[i], rows = s.rows();
+  sheet($("rdgrid"), $("rdnb"), $("rdfv"), rows);
+  $("rdtabs").innerHTML = rdSheets.map((t, j) => `<button type="button" role="tab" aria-selected="${j === i}" data-i="${j}">${t.name}</button>`).join("");
+  $("rdcap").textContent = s.cap;
+  $("rdnb").textContent = "A1"; $("rdfv").textContent = "Click any cell to see its formula";
+  $("rdstat").innerHTML = `<span>Ready</span><span>${rows.length - 1} rows</span><span>Linked sheets: 5</span><span>Calculation: automatic</span>`;
+}
+$("rdtabs").onclick = e => { const b = e.target.closest("button"); if (b) showRd(+b.dataset.i); };
+showRd(0);
+
+/* ---------- SOA reconciliation (ties out) ---------- */
+const ledger = 486230.55;
+const recItems = [
+  ["Receipt received, not yet applied in ERP", "RCPT", "AR", "Resolved", -38450.00],
+  ["Credit note raised, pending posting", "CN", "Sales", "In review", -12880.40],
+  ["Rebate accrual not on customer statement", "RB", "AR", "Open", -9215.75],
+  ["LPO price variance on 3 invoices", "LPO", "Sales", "Open", 4120.60],
+  ["Short delivery claim", "DN", "Logistics", "In review", -6740.00]
+];
+const adj = ledger + recItems.reduce((a, r) => a + r[4], 0), stmt = adj;
+const m2 = v => { const s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return v < 0 ? `(${s})` : s; };
+const stc = s => s === "Resolved" ? "ok" : s === "Open" ? "cr" : "wa";
+sheet($("sogrid"), $("sonb"), $("sofv"), [
+  { cls: "tt", cells: [c("Statement of account reconciliation, key account (masked)", { span: 6 })] },
+  { cls: "hd", cells: ["Line", "Description", "Reference", "Owner", "Status", "Amount"].map(h => c(h)) },
+  { cells: [c("1"), c("Balance as per our ledger (ERP)"), c("GL AR control"), c("AR"), c(""), c(N(m2(ledger)), { n: 1 })] },
+  ...recItems.map((r, i) => ({ cells: [c(String(i + 2)), c(r[0]), c(N(`${r[1]}-${int(1000, 9999)}`)), c(r[2]), c(r[3], { k: stc(r[3]) }), c(N(m2(r[4]), r[4] < 0 ? "neg" : ""), { n: 1 })] })),
+  { cls: "tot", cells: [c(""), c("Adjusted ledger balance"), c(""), c(""), c(""), c(N(m2(adj)), { n: 1, f: "=SUM(F3:F8)" })] },
+  { cells: [c(""), c("Balance as per customer statement"), c(N("SOA-" + int(100, 999))), c("Customer"), c(""), c(N(m2(stmt)), { n: 1 })] },
+  { cls: "tot", cells: [c(""), c("Difference"), c(""), c(""), c("Ties out", { k: "ok" }), c("0.00", { n: 1, k: "ok", f: "=ROUND(F9-F10,2)" })] }
+]);
+
+/* ---------- Pipeline ---------- */
+const stages = [
+  ["LPO received", "Email / portal", ["Customer and price checked", "Credit limit and overdue hold"], 128],
+  ["Sales order", "ERP", ["Price list match", "LPO variances flagged"], 126],
+  ["Invoice", "ERP", ["Tax and totals check", "Batch posting"], 124],
+  ["E-invoice validated", "E-invoicing platform", ["Mandatory fields validated", "Rejections fixed same day"], 124],
+  ["Delivery / POS sale", "Logistics / POS", ["Proof of delivery", "Daily POS to ERP match"], 119],
+  ["SOA match", "Excel / Sheets", ["Monthly statement reconciliation", "Balance confirmations"], 96],
+  ["Collection and allocation", "Bank / ERP", ["Receipts applied to invoices", "Unapplied cash cleared"], 88],
+  ["Month-end close", "ERP", ["Aging review and provisioning", "AR forecast to treasury"], 1]
+];
+$("pipe").innerHTML = stages.map((s, i) => `<div class="st${i === 3 ? " on" : ""}"><span class="cnt">${i < 7 ? N(s[3]) : ""}</span><b>${i + 1}. ${s[0]}</b><span class="sys">${s[1]}</span><ul>${s[2].map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("");
+
+/* ---------- Project P&L (margins always blurred) ---------- */
+seed = 42;
+const band = () => { const r = rnd(); return r > .45 ? "#9fd8b4" : r > .18 ? "#ffe08a" : "#ffb3c0"; };
+$("tiles").innerHTML = Array.from({length: 40}, (_, i) => `<i style="background:${band()}" title="Outlet ${String(i + 1).padStart(2, "0")}">${String(i + 1).padStart(2, "0")}</i>`).join("");
+const pl = ["Sales", "Cost of goods", "Gross margin %", "Manpower", "Overheads", "Net margin %"];
+$("pl").innerHTML = `<tr><th>Line</th><th>MTD</th><th>Plan</th><th>Var.</th></tr>` + pl.map(l => `<tr><td>${l}</td>${[0, 1, 2].map(() => `<td><span class="lock">${l.includes("%") ? "00.0%" : "000,000"}</span></td>`).join("")}</tr>`).join("");
+const mp = [["Manpower co. A", 34], ["Manpower co. B", 31], ["Manpower co. C", 27]];
+$("mp").innerHTML = `<tr><th>Supplier</th><th>Staff</th><th>Timesheet h</th><th>Invoiced h</th><th>Approved h</th><th>Status</th></tr>` + mp.map(([s, n], i) => {
+  const t = n * int(196, 212), inv = t + [0, 24, 0][i];
+  return `<tr><td>${s}</td><td>${N(n)}</td><td>${N(f0(t))}</td><td>${N(f0(inv))}</td><td>${N(f0(t))}</td><td><span class="${inv > t ? "cr" : "ok"}" style="padding:1px 6px;border-radius:3px">${inv > t ? "Query" : "Cleared"}</span></td></tr>`; }).join("");
+
+/* ---------- AI workflow ---------- */
+const aiSteps = [
+  ["Export", "Ledger and customer statement exported to Excel", "Me", "#5b4470"],
+  ["Strip", "Names, codes and bank details removed or coded", "Me", "#5b4470"],
+  ["Draft", "AI assistant suggests matches, formulas and variance notes", "AI assistant", "#b0306a"],
+  ["Review", "Every suggested match checked against source documents", "Me", "#5b4470"],
+  ["Post and log", "Adjustments posted in ERP, run logged with date and owner", "Me", "#5b4470"]
+];
+$("ai").innerHTML = aiSteps.map(s => `<div class="st"><b>${s[0]}</b><div style="font-size:12.5px;color:#555;margin-top:6px">${s[1]}</div><div class="who" style="color:${s[3]}">${s[2]}</div></div>`).join("");
+
+/* ---------- Hero mini cards ---------- */
+const sb = branches.slice(0, 4);
+$("h1").innerHTML = sb.map(b => `<div class="row"><span>${b.code}, ${b.zone}</span><span>${N(f0(b.dueA))}</span><span class="${stCls(b.status)}">${N(pct(b.ach))}</span></div>`).join("");
+$("h2").innerHTML = `<div class="row"><span>Ledger balance</span><span>${N(m2(ledger))}</span></div><div class="row"><span>Reconciling items (5)</span><span class="neg">${N(m2(adj - ledger))}</span></div><div class="row"><b>Difference</b><span class="ok">0.00</span></div>`;
+$("h3").innerHTML = stages.slice(0, 4).map(s => `<div class="row"><span>${s[0]}</span><span>${s[1]}</span></div>`).join("");
+
+/* ---------- Timeline ---------- */
+const orgCol = { "Mobilink GSM": "#8f7aa8", "RD Pvt. Ltd.": "#ff8fa3", "Wonder Bakery": "#ffd0d9" };
+const roles = [
+  ["Customer Service Representative", "Mobilink GSM", 2011.83, 2014.42, "Nov 2011 to May 2014"],
+  ["Recovery Officer", "RD Pvt. Ltd.", 2014.42, 2016.67, "Jun 2014 to Aug 2016"],
+  ["Credit & Recovery Executive", "RD Pvt. Ltd.", 2016.67, 2019, "Sep 2016 to Dec 2018"],
+  ["Accounts Receivable Executive", "RD Pvt. Ltd.", 2019, 2022.92, "Jan 2019 to Nov 2022"],
+  ["Receivable Accountant", "Wonder Bakery", 2023.92, 2025.83, "Dec 2023 to Oct 2025"],
+  ["Project Accountant", "Wonder Bakery", 2025.83, 2026.9, "Nov 2025 to present"]
+];
+const emps = [
+  { o: "Mobilink GSM", y: "2011 to 2014" },
+  { o: "RD Pvt. Ltd.", y: "2014 to 2022" },
+  null,
+  { o: "Wonder Bakery", y: "2023 to present" }
+];
+$("tlgrid").innerHTML = emps.map(e => e ? `<div class="tlc"><b>${e.o}</b><div class="seg2">${roles.filter(r => r[1] === e.o).map(r => `<i style="flex:${(r[3] - r[2]).toFixed(2)};background:${orgCol[e.o]}" title="${r[0]}, ${r[4]}"></i>`).join("")}</div><span class="yr">${e.y}</span></div>` : `<div class="tlc gap" aria-hidden="true"><div class="seg2"></div></div>`).join("");
+$("orgs").innerHTML = ["Mobilink GSM", "RD Pvt. Ltd.", "Wonder Bakery"].map(o => `<div class="org" style="border-top-color:${orgCol[o]}"><h3>${o}<span class="mut" style="display:block;font:400 13px Inter,sans-serif;margin-top:2px">${emps.find(e => e && e.o === o).y}</span></h3><ul>${roles.filter(r => r[1] === o).reverse().map(r => `<li>${r[0]}<span>${r[4]}</span></li>`).join("")}</ul></div>`).join("");
+
+/* ---------- Experience ---------- */
+const jobs = [
+  ["Project Accountant", "Wonder Bakery LLC, Dubai", "Nov 2025 to present", "FMCG manufacturer of bakery and frozen products. Full finance and accounting for a 40+ outlet retail project.",
+    ["Built and report the <b>project P&amp;L across 40+ outlets</b>, mapping sales, cost of goods, manpower and overheads into one model", "Manage <b>manpower billing for 90+ staff</b> from third-party suppliers: timesheet validation, invoice checks and outlet cost allocation", "Run AP and AR end to end, including reconciliations and month-end close", "Implemented <b>POS software</b> across outlets and reconcile daily POS sales to the ERP", "Leading <b>UAE e-invoicing implementation</b>, integrating a third-party platform with Microsoft Dynamics"]],
+  ["Receivable Accountant", "Wonder Bakery LLC, Dubai", "Dec 2023 to Oct 2025", "",
+    ["Managed <b>15,000+ invoices a month</b>, keeping customer accounts accurate through SOA reconciliation and timely posting", "Supported the <b>ERP migration to Microsoft Dynamics</b> and improved bad debt provisioning", "Prepared AR forecasts, rebate calculations and collections tracking for cash flow planning", "Resolved LPO discrepancies and balance confirmations with distributors and key accounts"]],
+  ["Accounts Receivable Executive", "RD Pvt. Ltd., Pakistan", "Jan 2019 to Nov 2022", "Hire purchase (consumer finance) company with 160+ branches.",
+    ["Lifted <b>productivity 40% across 160+ branches</b> by automating the sales tool", "Ran the daily <b>Due/OD achievement workbook</b> in Excel: channel summary, branch drill-down and account aging", "Improved compliance, aging and payment reporting across the branch network"]],
+  ["Credit & Recovery Executive", "RD Pvt. Ltd., Pakistan", "Sep 2016 to Dec 2018", "",
+    ["Designed credit policies that reduced risk on hire purchase contracts and recovered delayed payments", "Presented lease purchase plans to senior leadership to grow revenue"]],
+  ["Recovery Officer", "RD Pvt. Ltd., Pakistan", "Jun 2014 to Aug 2016", "",
+    ["Cut <b>120+ day delinquent accounts by 35%</b> through structured recovery plans and payment arrangements"]],
+  ["Customer Service Representative", "Mobilink GSM, Pakistan", "Nov 2011 to May 2014", "",
+    ["Handled 350+ customer queries a day with a 90% score across service KPIs"]]
+];
+$("jobs").innerHTML = jobs.map(j => `<div class="job"><div class="meta"><h3>${j[0]}, <span style="color:var(--rose);white-space:normal">${j[1]}</span></h3><span>${j[2]}</span></div>${j[3] ? `<p class="mut" style="font-size:15px;margin:0">${j[3]}</p>` : ""}<ul>${j[4].map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("");
+
+
+/* ---------- CV button + copy email ---------- */
+document.querySelectorAll(".cvbtn").forEach(a => {
+  if (CV_URL) { a.href = CV_URL; a.target = "_blank"; a.rel = "noopener"; }
+  else a.addEventListener("click", () => { $("cvnote").textContent = "CV available on request: email daud.azhar.q@gmail.com and I will send it the same day."; });
+});
+$("copy").onclick = async () => {
+  try { await navigator.clipboard.writeText("daud.azhar.q@gmail.com"); $("copy").textContent = "Copied"; }
+  catch (e) { $("copy").textContent = "Select the address to copy"; }
+  setTimeout(() => $("copy").textContent = "Copy", 2200);
+};
+}
+</script>
+</body>
+</html>
