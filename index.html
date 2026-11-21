@@ -62,13 +62,12 @@ p{margin:0 0 14px;max-width:68ch}
 .card.c1{right:12%;top:110px}
 .stackfig:hover .c3{transform:rotate(5deg) translate(14px,-8px)}
 .stackfig:hover .c2{transform:rotate(-3.5deg) translate(-6px,-4px)}
-.figs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(32px,5vw,56px)}
-.figs div{padding:18px 16px;border-left:1px solid var(--line)}
-.figs div:first-child{border-left:0}
-.figs b{display:block;font:300 clamp(30px,3.4vw,44px)/1 "Inter Tight",sans-serif;white-space:nowrap}
+.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border-block:1px solid var(--line);margin-top:clamp(32px,5vw,56px)}
+.figs div{padding:18px 16px;background:var(--bg)}
+.figs b{display:block;font:300 clamp(28px,3.2vw,42px)/1 "Inter Tight",sans-serif;white-space:nowrap}
 .figs span{display:block;margin-top:8px;font-size:14px;color:var(--mut);line-height:1.35}
-@media(max-width:980px){.hero{grid-template-columns:minmax(0,1fr)}.stackfig{height:400px}.figs{grid-template-columns:repeat(3,minmax(0,1fr))}.figs div:nth-child(4){border-left:0}.figs div:nth-child(n+4){border-top:1px solid var(--line)}}
-@media(max-width:600px){.stackfig{height:auto}.card{position:relative;width:100%;right:auto;top:auto;transform:none!important}.card.c2,.card.c3{display:none}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.figs div{border-left:0!important;border-top:1px solid var(--line)}.figs div:nth-child(-n+2){border-top:0}.figs div:nth-child(even){border-left:1px solid var(--line)!important}}
+@media(max-width:980px){.hero{grid-template-columns:minmax(0,1fr)}.stackfig{height:400px}}
+@media(max-width:600px){.stackfig{height:auto}.card{position:relative;width:100%;right:auto;top:auto;transform:none!important}.card.c2,.card.c3{display:none}.figs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* ---------- About + timeline ---------- */
 .about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,64px);align-items:start}
@@ -265,11 +264,13 @@ footer{padding:22px max(5vw,16px);color:var(--mut);font-size:13px;text-align:cen
   </div>
   <div class="figs">
     <div><b>12 yrs</b><span>in credit, recovery, AR and project accounting</span></div>
-    <div><b>15,000+</b><span>invoices a month kept reconciled</span></div>
-    <div><b>160+</b><span>branches covered by daily Due/OD tracking</span></div>
+    <div><b>15,000+</b><span>invoices a month managed in AR</span></div>
+    <div><b>+40%</b><span>performance across 160+ branches and 600+ sales reps</span></div>
     <div><b>&minus;35%</b><span>accounts delinquent 120+ days</span></div>
-    <div><b>+40%</b><span>productivity after automating the sales tool</span></div>
-    <div><b>40+</b><span>outlets in one project P&amp;L I run</span></div>
+    <div><b>&minus;20%</b><span>average invoice processing time</span></div>
+    <div><b>PKR 17M</b><span>(USD 75K) aging defects uncovered and fixed at the root</span></div>
+    <div><b>40+</b><span>outlets in the project P&amp;L I run</span></div>
+    <div><b>90+</b><span>third-party staff in monthly manpower billing</span></div>
   </div>
 </div></section>
 
@@ -278,7 +279,7 @@ footer{padding:22px max(5vw,16px);color:var(--mut);font-size:13px;text-align:cen
   <div>
     <h2>Credit discipline first, then the systems behind it</h2>
     <p class="lead">I started on the recovery desk of a hire purchase company, where every overdue installment had a name, a branch and a deadline. That taught me collections as a daily operating rhythm, not a month-end surprise.</p>
-    <p class="mut">At RD Pvt. Ltd. I moved from recovery into credit policy and then Accounts Receivable, running daily Due/OD achievement reporting for 160+ branches in Excel and automating the sales tool the branches relied on.</p>
+    <p class="mut">Over 8.5 years at RD (Ruba Digital), a 160+ branch hire-purchase company, I moved from recovery into credit policy and then senior Accounts Receivable: running daily Due/OD achievement reporting in Excel, automating performance tracking for 600+ sales reps and leading a forensic review that uncovered PKR 17M (USD 75K) in aging defects.</p>
     <p class="mut">At Wonder Bakery in Dubai I took over AR for 15,000+ invoices a month, reconciled customer statements, supported the move to Microsoft Dynamics and later stepped up to Project Accountant, running the full books of a 40+ outlet retail project and its UAE e-invoicing rollout.</p>
     <p class="mut">I sit between finance, operations and IT: I understand the ledger and the system that feeds it.</p>
   </div>
@@ -300,7 +301,7 @@ footer{padding:22px max(5vw,16px);color:var(--mut);font-size:13px;text-align:cen
       <ul><li>ERP migration support to Microsoft Dynamics (finance side, alongside IT)</li><li>UAE e-invoicing implementation with a third-party platform</li><li>POS software rollout and reconciliation design</li><li>Excel automation: advanced formulas, lookups, pivots, linked multi-sheet trackers</li><li>AI assistants for matching, formula building and variance commentary, always reviewed</li><li>Scripts that organise files and produce action logs</li></ul></article>
   </div>
   <div class="tools" aria-label="Tools">
-    <span>Microsoft Dynamics 365</span><span>Advanced Excel</span><span>Google Sheets</span><span>Tally Prime</span><span>Power BI (working knowledge)</span><span>POS systems</span><span>UAE e-invoicing</span><span>AI assistants (Claude, ChatGPT)</span><span>Python and PowerShell scripts</span>
+    <span>Microsoft Dynamics 365</span><span>Advanced Excel</span><span>Google Sheets</span><span>Tally Prime</span><span>Power BI (AR reporting)</span><span>Power Query and Power Pivot</span><span>POS systems</span><span>UAE e-invoicing</span><span>AI assistants (Claude, ChatGPT)</span><span>Python and PowerShell scripts</span>
   </div>
 </div></section>
 
@@ -411,7 +412,7 @@ footer{padding:22px max(5vw,16px);color:var(--mut);font-size:13px;text-align:cen
     <div id="jobs"></div>
     <aside class="side">
       <h3>Credentials</h3>
-      <ul><li>Bachelor of Commerce (B.Com)<span>University of the Punjab, Lahore, 2011</span></li><li>Advanced Excel<span>ICMA Pakistan</span></li><li>IELTS band 7.0<span>British Council</span></li></ul>
+      <ul><li>Bachelor of Commerce (B.Com)<span>University of the Punjab, Lahore, 2011</span></li><li>IELTS band 7.0<span>British Council</span></li><li>Microsoft Excel (Advanced)<span>ICMA Pakistan</span></li><li>Excel Dashboards<span>Cognos and Coursera</span></li><li>UAE driving licence</li></ul>
       <h3>Recognition at RD</h3>
       <ul><li>Certificate of Excellence<span>From the CEO, 2022</span></li><li>Extraordinary Performance award<span>2021</span></li></ul>
     </aside>
@@ -633,38 +634,38 @@ $("h2").innerHTML = `<div class="row"><span>Ledger balance</span><span>${N(m2(le
 $("h3").innerHTML = stages.slice(0, 4).map(s => `<div class="row"><span>${s[0]}</span><span>${s[1]}</span></div>`).join("");
 
 /* ---------- Timeline ---------- */
-const orgCol = { "Mobilink GSM": "#8f7aa8", "RD Pvt. Ltd.": "#ff8fa3", "Wonder Bakery": "#ffd0d9" };
+const orgCol = { "Jazz (Mobilink GSM)": "#8f7aa8", "RD (Ruba Digital)": "#ff8fa3", "Wonder Bakery": "#ffd0d9" };
 const roles = [
-  ["Customer Service Representative", "Mobilink GSM", 2011.83, 2014.42, "Nov 2011 to May 2014"],
-  ["Recovery Officer", "RD Pvt. Ltd.", 2014.42, 2016.67, "Jun 2014 to Aug 2016"],
-  ["Credit & Recovery Executive", "RD Pvt. Ltd.", 2016.67, 2019, "Sep 2016 to Dec 2018"],
-  ["Accounts Receivable Executive", "RD Pvt. Ltd.", 2019, 2022.92, "Jan 2019 to Nov 2022"],
-  ["Receivable Accountant", "Wonder Bakery", 2023.92, 2025.83, "Dec 2023 to Oct 2025"],
+  ["Customer Care Representative", "Jazz (Mobilink GSM)", 2011.83, 2014.42, "Nov 2011 to May 2014"],
+  ["Recovery Officer", "RD (Ruba Digital)", 2014.42, 2016.67, "Jun 2014 to Aug 2016"],
+  ["Credit & Recovery Executive", "RD (Ruba Digital)", 2016.67, 2019, "Sep 2016 to Dec 2018"],
+  ["Senior Accounts Receivable Executive", "RD (Ruba Digital)", 2019, 2022.92, "Jan 2019 to Nov 2022"],
+  ["Accounts Receivable Accountant", "Wonder Bakery", 2023.92, 2025.88, "Dec 2023 to Nov 2025"],
   ["Project Accountant", "Wonder Bakery", 2025.83, 2026.9, "Nov 2025 to present"]
 ];
 const emps = [
-  { o: "Mobilink GSM", y: "2011 to 2014" },
-  { o: "RD Pvt. Ltd.", y: "2014 to 2022" },
+  { o: "Jazz (Mobilink GSM)", y: "2011 to 2014" },
+  { o: "RD (Ruba Digital)", y: "2014 to 2022" },
   null,
   { o: "Wonder Bakery", y: "2023 to present" }
 ];
 $("tlgrid").innerHTML = emps.map(e => e ? `<div class="tlc"><b>${e.o}</b><div class="seg2">${roles.filter(r => r[1] === e.o).map(r => `<i style="flex:${(r[3] - r[2]).toFixed(2)};background:${orgCol[e.o]}" title="${r[0]}, ${r[4]}"></i>`).join("")}</div><span class="yr">${e.y}</span></div>` : `<div class="tlc gap" aria-hidden="true"><div class="seg2"></div></div>`).join("");
-$("orgs").innerHTML = ["Mobilink GSM", "RD Pvt. Ltd.", "Wonder Bakery"].map(o => `<div class="org" style="border-top-color:${orgCol[o]}"><h3>${o}<span class="mut" style="display:block;font:400 13px Inter,sans-serif;margin-top:2px">${emps.find(e => e && e.o === o).y}</span></h3><ul>${roles.filter(r => r[1] === o).reverse().map(r => `<li>${r[0]}<span>${r[4]}</span></li>`).join("")}</ul></div>`).join("");
+$("orgs").innerHTML = ["Jazz (Mobilink GSM)", "RD (Ruba Digital)", "Wonder Bakery"].map(o => `<div class="org" style="border-top-color:${orgCol[o]}"><h3>${o}<span class="mut" style="display:block;font:400 13px Inter,sans-serif;margin-top:2px">${emps.find(e => e && e.o === o).y}</span></h3><ul>${roles.filter(r => r[1] === o).reverse().map(r => `<li>${r[0]}<span>${r[4]}</span></li>`).join("")}</ul></div>`).join("");
 
 /* ---------- Experience ---------- */
 const jobs = [
-  ["Project Accountant", "Wonder Bakery LLC, Dubai", "Nov 2025 to present", "FMCG manufacturer of bakery and frozen products. Full finance and accounting for a 40+ outlet retail project.",
-    ["Built and report the <b>project P&amp;L across 40+ outlets</b>, mapping sales, cost of goods, manpower and overheads into one model", "Manage <b>manpower billing for 90+ staff</b> from third-party suppliers: timesheet validation, invoice checks and outlet cost allocation", "Run AP and AR end to end, including reconciliations and month-end close", "Implemented <b>POS software</b> across outlets and reconcile daily POS sales to the ERP", "Leading <b>UAE e-invoicing implementation</b>, integrating a third-party platform with Microsoft Dynamics"]],
-  ["Receivable Accountant", "Wonder Bakery LLC, Dubai", "Dec 2023 to Oct 2025", "",
-    ["Managed <b>15,000+ invoices a month</b>, keeping customer accounts accurate through SOA reconciliation and timely posting", "Supported the <b>ERP migration to Microsoft Dynamics</b> and improved bad debt provisioning", "Prepared AR forecasts, rebate calculations and collections tracking for cash flow planning", "Resolved LPO discrepancies and balance confirmations with distributors and key accounts"]],
-  ["Accounts Receivable Executive", "RD Pvt. Ltd., Pakistan", "Jan 2019 to Nov 2022", "Hire purchase (consumer finance) company with 160+ branches.",
-    ["Lifted <b>productivity 40% across 160+ branches</b> by automating the sales tool", "Ran the daily <b>Due/OD achievement workbook</b> in Excel: channel summary, branch drill-down and account aging", "Improved compliance, aging and payment reporting across the branch network"]],
-  ["Credit & Recovery Executive", "RD Pvt. Ltd., Pakistan", "Sep 2016 to Dec 2018", "",
-    ["Designed credit policies that reduced risk on hire purchase contracts and recovered delayed payments", "Presented lease purchase plans to senior leadership to grow revenue"]],
-  ["Recovery Officer", "RD Pvt. Ltd., Pakistan", "Jun 2014 to Aug 2016", "",
-    ["Cut <b>120+ day delinquent accounts by 35%</b> through structured recovery plans and payment arrangements"]],
-  ["Customer Service Representative", "Mobilink GSM, Pakistan", "Nov 2011 to May 2014", "",
-    ["Handled 350+ customer queries a day with a 90% score across service KPIs"]]
+  ["Project Accountant", "Wonder Bakery LLC, Dubai", "Nov 2025 to present", "FMCG manufacturer of bakery and frozen products. All finance and accounting for a 40+ outlet retail project.",
+    ["Built and report the <b>project P&amp;L across 40+ outlets</b>, mapping sales, cost of goods, manpower and overheads into one model so management sees profitability by outlet", "Manage <b>manpower billing for 90+ staff</b> from third-party manpower companies: timesheet validation, invoice checks and monthly cost allocation to outlets", "Run AP and AR end to end: vendor payments, customer billing, reconciliations and month-end close", "Led the finance side of the <b>POS rollout</b> across project outlets; reconcile daily POS sales to the ERP", "Finance lead on the <b>UAE e-invoicing implementation</b>, working with IT and a third-party platform to connect e-invoicing with Microsoft Dynamics", "Prepare financial analysis and management reports on sales, margins and costs"]],
+  ["Accounts Receivable Accountant", "Wonder Bakery LLC, Dubai", "Dec 2023 to Nov 2025", "",
+    ["Managed AR for <b>15,000+ invoices a month</b>, keeping distributor accounts accurate through SOA reconciliation, payment posting and collections", "Analysed AR and credit risk, set customer credit limits and kept all distributor accounts fully reconciled", "Prepared weekly AR cash flow statements, AR forecasts and rebate calculations for cash planning", "Ran AR month-end close, including journal entries for bad debts, cash in transit and intercompany transactions", "Supported the finance team through the <b>Microsoft Dynamics migration</b>, keeping AR running during the switch", "Resolved LPO discrepancies with the order-taking team and handled distributor balance confirmations"]],
+  ["Senior Accounts Receivable Executive", "RD (Ruba Digital) Pvt. Ltd., Pakistan", "Jan 2019 to Nov 2022", "Hire-purchase (consumer finance) company with 160+ branches.",
+    ["Automated daily performance tracking for <b>160+ branches and 600+ sales reps</b>, lifting performance by <b>40%</b>", "Cut average <b>invoice processing time by 20%</b> by redesigning AR, cash flow and reconciliation processes", "Uncovered <b>aging defects worth PKR 17 million (USD 75,000)</b> and led the forensic review that fixed the root cause", "Ran the daily <b>Due/OD achievement workbook</b> in Excel: channel summary, branch drill-down and account aging", "Finance user lead for the Microsoft Dynamics (DAX) rollout, Power BI AR reporting and digital payment channels", "Trained <b>19 AR team members</b> on Power BI reporting; prepared supporting documents for internal and external audits"]],
+  ["Credit & Recovery Executive", "RD (Ruba Digital) Pvt. Ltd., Lahore", "Sep 2016 to Dec 2018", "",
+    ["Assessed credit risk on hire-purchase customers by analysing financial statements and customer data before approval", "Wrote and updated credit and recovery policies to recover stalled receivables and protect revenue", "Presented lease purchase plans to senior management; evaluated sales and recovery officers against targets"]],
+  ["Recovery Officer", "RD (Ruba Digital) Pvt. Ltd., Islamabad", "Jun 2014 to Aug 2016", "",
+    ["Reduced <b>120+ day delinquent accounts by 35%</b> by negotiating structured payment plans", "Lifted team productivity by <b>40%</b> with updated recovery and operational processes; helped design guidelines for special recovery projects"]],
+  ["Customer Care Representative", "Jazz (formerly Mobilink GSM), Lahore", "Nov 2011 to May 2014", "",
+    ["Handled 350+ calls a day with a 90% score across service KPIs"]]
 ];
 $("jobs").innerHTML = jobs.map(j => `<div class="job"><div class="meta"><h3>${j[0]}, <span style="color:var(--rose);white-space:normal">${j[1]}</span></h3><span>${j[2]}</span></div>${j[3] ? `<p class="mut" style="font-size:15px;margin:0">${j[3]}</p>` : ""}<ul>${j[4].map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("");
 
